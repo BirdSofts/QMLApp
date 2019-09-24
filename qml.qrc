@@ -3,5 +3,8 @@
         <file>main.qml</file>
         <file>launcher.qml</file>
         <file>Palette.qml</file>
+        <file>page0.qml</file>
+        <file>page1.qml</file>
+        <file>page2.qml</file>
     </qresource>
 </RCC>

@@ -3,103 +3,74 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,18.09.2019</created>
-/// <changed>ʆϒʅ,23.09.2019</changed>
+/// <changed>ʆϒʅ,25.09.2019</changed>
 // *******************************************************************************************
 
 
 import QtQuick 2.13
-//import QtQuick.Window 2.13
+//import QtQuick.Window 2.13 // QML window component
+import QtQuick.Controls 2.13
 
+// QML window component
 //Window {
-  //visible: true
-  //title: qsTr("Hello World")
+//visible: true
+//title: qsTr("Hello World")
 
 Item {
-  id: page
+  id: main
   width: 320
   height: 480
-  //Qt.resolvedUrl("launcher.qml")
 
-  Text {
-    id: entity
-    anchors.left: parent.left
-    anchors.leftMargin: 120
-    text: "Entity"
-    wrapMode: Text.WrapAtWordBoundrayOrAnywhere
-    color: "blue"
-    font.pixelSize: 12
-  }
+  SwipeView {
+    id: view
 
-  Rectangle {
-    width: 100
-    height: 100
+    currentIndex: 0
+    anchors.fill: parent
 
-    gradient: Gradient {
-      GradientStop { position: 0.0; color: "yellow" }
-      GradientStop { position: 0.5; color: "blue" }
-      GradientStop { position: 1.0; color: "green" }
-    }
+//    pages to be loaded item by item
+//    Item {
+//      id: pageOne
+//      Loader { source: "pageOne.qml" }
+//      //property Component one: PageOne {}
+//    }
+//    Item {
+//      id: pageTwo
+//      Loader { source: "pageTwo.qml" }
+//    }
+//    Item {
+//      id: pageThree
+//      Loader { source: "pageThree.qml" }
+//    }
 
-    Text {
-      anchors.centerIn: parent
-      text: "Hello, QML!"
-      font.family: "Consolas"
-      font.pointSize: 12
-      opacity: 0.5
-    }
-  }
+    // automatic pages' instantiatation and destruction
+    Repeater {
+      model: 3 // number of pages
 
-  // id attribute: to reference to other objects (identifier begins with lowercase or underscore and contains normal characters)
-  Text { text: entity.text }
+      Loader {
+        // loaded ones (note that using loader source property, destruction functionality is different)
+        //active: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
+        active: SwipeView.isCurrentItem // just current is loaded
 
-  Rectangle {
-    id: test
-    width: 320; height: 200
-    color: "gray"
-    anchors.bottom: page.bottom;
-  
-    Text {
-      id: testText
-      text: "Test"
-      y: 10
-      anchors.horizontalCenter: test.horizontalCenter
-      font.pointSize: 20; font.bold: true
-    }
+        source: "page"+index+".qml"
 
-    MouseArea { id: mouseArea; anchors.fill: parent }
-
-    states: State {
-      name: "turn"; when: mouseArea.pressed == true
-      PropertyChanges {target: testText; y: 0; rotation: 360; color: "white"}
-    }
-
-    transitions: Transition {
-      from: ""; to: "turn"; reversible: true
-
-      ParallelAnimation {
-        NumberAnimation {
-          properties: "y, rotation";
-          duration: 1000;
-          easing.type: Easing.InOutElastic
+        sourceComponent: Text {
+          //text: index
+          Component.onCompleted: console.log("crated:", "page"+index+".qml")
+          Component.onDestruction: console.log("destructed:", "page"+index+".qml")
         }
-        ColorAnimation { duration: 1000 }
       }
     }
 
-    Grid {
-      id: palettePicker
-      x: 5; anchors.bottom: test.bottom; anchors.bottomMargin: 5
-      rows: 3; columns: 2; spacing: 5
-
-      Palette { paletteColor: "red"; onClicked: testText.color = paletteColor }
-      Palette { paletteColor: "green"; onClicked: testText.color = paletteColor }
-      Palette { paletteColor: "blue"; onClicked: testText.color = paletteColor }
-      Palette { paletteColor: "yellow"; onClicked: testText.color = paletteColor }
-      Palette { paletteColor: "skyblue"; onClicked: testText.color = paletteColor }
-      Palette { paletteColor: "black"; onClicked: testText.color = paletteColor }
-    }
   }
 
+  // swip view need: a good practice, which gives the user some clues about where was what. :)
+  PageIndicator {
+    id: indicator
 
+    count: view.count
+    currentIndex: view.currentIndex
 
+    anchors.bottom: view.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+  }
 }

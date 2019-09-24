@@ -3,14 +3,15 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,22.09.2019</created>
-/// <changed>ʆϒʅ,23.09.2019</changed>
+/// <changed>ʆϒʅ,25.09.2019</changed>
 // *******************************************************************************************
 
 
 import QtQuick 2.13
 
+// palette container entity
 Item {
-  id: container
+  id: paletteEntity
   property alias paletteColor: rectangle.color
   signal clicked ( color paletteColor )
 
@@ -22,8 +23,9 @@ Item {
     anchors.fill: parent
   }
 
+  // clickable area and its event
   MouseArea {
     anchors.fill: parent
-    onClicked: container.clicked ( container.paletteColor )
+    onClicked: paletteEntity.clicked ( paletteEntity.paletteColor )
   }
 }
