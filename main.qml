@@ -3,7 +3,7 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,18.09.2019</created>
-/// <changed>ʆϒʅ,25.09.2019</changed>
+/// <changed>ʆϒʅ,26.09.2019</changed>
 // *******************************************************************************************
 
 
@@ -20,57 +20,65 @@ Item {
   id: main
   width: 320
   height: 480
+//  width: 480
+//  height: 640
 
-  SwipeView {
-    id: view
-
-    currentIndex: 0
+  Item {
+    width: parent.width
+    height: parent.height
     anchors.fill: parent
+    anchors.rightMargin: 5
+    anchors.bottomMargin: 5
+    anchors.leftMargin: 5
+    anchors.topMargin: 5
 
-//    pages to be loaded item by item
-//    Item {
-//      id: pageOne
-//      Loader { source: "pageOne.qml" }
-//      //property Component one: PageOne {}
-//    }
-//    Item {
-//      id: pageTwo
-//      Loader { source: "pageTwo.qml" }
-//    }
-//    Item {
-//      id: pageThree
-//      Loader { source: "pageThree.qml" }
-//    }
+    SwipeView {
+      id: view
+      currentIndex: 0
+      anchors.fill: parent
 
-    // automatic pages' instantiatation and destruction
-    Repeater {
-      model: 3 // number of pages
+      //    pages to be loaded item by item
+      //    Item {
+      //      id: pageOne
+      //      Loader { source: "pageOne.qml" }
+      //      //property Component one: PageOne {}
+      //    }
+      //    Item {
+      //      id: pageTwo
+      //      Loader { source: "pageTwo.qml" }
+      //    }
+      //    Item {
+      //      id: pageThree
+      //      Loader { source: "pageThree.qml" }
+      //    }
 
-      Loader {
-        // loaded ones (note that using loader source property, destruction functionality is different)
-        //active: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
-        active: SwipeView.isCurrentItem // just current is loaded
+      // automatic pages' instantiatation and destruction
+      Repeater {
+        model: 3 // number of pages
 
-        source: "page"+index+".qml"
+        Loader {
+          // loaded ones (note that using loader source property, destruction functionality is different)
+          //active: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
+          active: SwipeView.isCurrentItem // just current is loaded
 
-        sourceComponent: Text {
-          //text: index
-          Component.onCompleted: console.log("crated:", "page"+index+".qml")
-          Component.onDestruction: console.log("destructed:", "page"+index+".qml")
+          source: "page" + index + ".qml"
+
+          sourceComponent: Text {
+            //text: index
+            Component.onCompleted: console.log("crated:", "page" + index + ".qml")
+            Component.onDestruction: console.log("destructed:", "page" + index + ".qml")
+          }
         }
       }
     }
 
-  }
-
-  // swip view need: a good practice, which gives the user some clues about where was what. :)
-  PageIndicator {
-    id: indicator
-
-    count: view.count
-    currentIndex: view.currentIndex
-
-    anchors.bottom: view.bottom
-    anchors.horizontalCenter: parent.horizontalCenter
+    // swip view need: a good practice, which gives the user some clues about where was what. :)
+    PageIndicator {
+      id: indicator
+      count: view.count
+      currentIndex: view.currentIndex
+      anchors.bottom: view.bottom
+      anchors.horizontalCenter: parent.horizontalCenter
+    }
   }
 }

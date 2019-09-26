@@ -3,7 +3,7 @@
 #/ 
 #/ </summary>
 #/ <created>ʆϒʅ,18.09.2019</created>
-#/ <changed>ʆϒʅ,25.09.2019</changed>
+#/ <changed>ʆϒʅ,27.09.2019</changed>
 # *******************************************************************************************
 
 
@@ -33,7 +33,7 @@ if(NOT CMAKE_MODULE_PATH)
   endif(MSVC)
 endif()
 
-find_package(Qt5 COMPONENTS Core Quick QuickControls2 REQUIRED)
+find_package(Qt5 COMPONENTS Core Quick Qml QuickControls2 REQUIRED)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -51,10 +51,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 list(APPEND HEADER_FILES
   #          file.h
+  settings.h
   )
 
 list(APPEND SOURCE_FILES
   main.cpp
+  settings.cpp
   )
 
 list(APPEND QRC_FILES
@@ -77,7 +79,11 @@ endif(ANDROID)
 target_compile_definitions(${TARGET_NAME}
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(${TARGET_NAME}
-  PRIVATE Qt5::Core Qt5::Quick Qt5::QuickControls2)
+  PRIVATE Qt5::Core
+  PRIVATE Qt5::Quick
+  PRIVATE Qt5::Qml
+  PRIVATE Qt5::QuickControls2
+  )
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
 # Check http://doc.qt.io/qt-5/deployment-android.html for more information.
