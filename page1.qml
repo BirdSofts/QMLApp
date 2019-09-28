@@ -3,16 +3,16 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,24.09.2019</created>
-/// <changed>ʆϒʅ,27.09.2019</changed>
+/// <changed>ʆϒʅ,28.09.2019</changed>
 // *******************************************************************************************
 
 
-import QtQuick 2.9
+import QtQuick 2.13
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.5
 import QtQml.Models 2.3
 
-// second swipe view base container
+// second swipe view (base container)
 Item {
   width: parent.width
   height: parent.height
@@ -109,11 +109,12 @@ Item {
               ListView {
                 id: fontList
                 model: Qt.fontFamilies()
-                width: parent.width - 20
-                height: parent.height - 20
+                width: parent.width
+                height: parent.height
                 delegate: ItemDelegate {
                   text: modelData
                   font.pixelSize: 14
+                  width: parent.width
                   highlighted: ListView.isCurrentItem
                   onClicked: {
                     fontType.text = qsTr("Font: " + modelData)
@@ -134,7 +135,7 @@ Item {
           anchors.margins: 10
           anchors.horizontalCenter: parent.horizontalAlignment
           Text {
-            text: "Number 1"
+            text: "Item 1"
             font.pixelSize: 14
           }
         }
@@ -144,7 +145,7 @@ Item {
           anchors.margins: 10
           anchors.horizontalCenter: parent.horizontalAlignment
           Text {
-            text: "Number 2"
+            text: "Item 2"
             font.pixelSize: 14
           }
         }

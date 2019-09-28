@@ -3,7 +3,7 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,24.09.2019</created>
-/// <changed>ʆϒʅ,26.09.2019</changed>
+/// <changed>ʆϒʅ,28.09.2019</changed>
 // *******************************************************************************************
 
 
@@ -11,11 +11,13 @@ import QtQuick 2.9
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.5
 
+// first swipe view (base container)
 Item {
   id: pageOne
   width: parent.width
   height: parent.height
 
+  // page base container
   Item {
     width: parent.width
     height: parent.height
@@ -67,7 +69,7 @@ Item {
       Text {
         id: testText
         text: "Test"
-        y: 10
+        y: parent. top + 10
         anchors.horizontalCenter: test.horizontalCenter
         font.pointSize: 20; font.bold: true
       }

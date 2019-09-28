@@ -3,7 +3,7 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,18.09.2019</created>
-/// <changed>ʆϒʅ,26.09.2019</changed>
+/// <changed>ʆϒʅ,28.09.2019</changed>
 // *******************************************************************************************
 
 
@@ -20,8 +20,8 @@ Item {
   id: main
   width: 320
   height: 480
-//  width: 480
-//  height: 640
+  //  width: 480
+  //  height: 640
 
   Item {
     width: parent.width
@@ -59,15 +59,15 @@ Item {
         Loader {
           // loaded ones (note that using loader source property, destruction functionality is different)
           //active: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
-          active: SwipeView.isCurrentItem // just current is loaded
+          //active: SwipeView.isCurrentItem // just current is loaded
 
           source: "page" + index + ".qml"
 
-          sourceComponent: Text {
-            //text: index
-            Component.onCompleted: console.log("crated:", "page" + index + ".qml")
-            Component.onDestruction: console.log("destructed:", "page" + index + ".qml")
-          }
+//          sourceComponent: Text {
+//            text: index
+//            Component.onCompleted: console.log("crated:", "page" + index + ".qml")
+//            Component.onDestruction: console.log("destructed:", "page" + index + ".qml")
+//          }
         }
       }
     }

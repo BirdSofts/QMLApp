@@ -3,7 +3,7 @@
 #/ 
 #/ </summary>
 #/ <created>ʆϒʅ,18.09.2019</created>
-#/ <changed>ʆϒʅ,27.09.2019</changed>
+#/ <changed>ʆϒʅ,28.09.2019</changed>
 # *******************************************************************************************
 
 
@@ -50,7 +50,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #endif(MSVC)
 
 list(APPEND HEADER_FILES
-  #          file.h
   settings.h
   )
 
