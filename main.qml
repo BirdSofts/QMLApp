@@ -3,7 +3,7 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,18.09.2019</created>
-/// <changed>ʆϒʅ,28.09.2019</changed>
+/// <changed>ʆϒʅ,30.09.2019</changed>
 // *******************************************************************************************
 
 
@@ -18,10 +18,10 @@ import QtQuick.Controls 2.13
 
 Item {
   id: main
-  width: 320
-  height: 480
-  //  width: 480
-  //  height: 640
+//  width: 320
+//  height: 480
+  width: 480
+  height: 640
 
   Item {
     width: parent.width
@@ -63,11 +63,11 @@ Item {
 
           source: "page" + index + ".qml"
 
-//          sourceComponent: Text {
-//            text: index
-//            Component.onCompleted: console.log("crated:", "page" + index + ".qml")
-//            Component.onDestruction: console.log("destructed:", "page" + index + ".qml")
-//          }
+          //          sourceComponent: Text {
+          //            text: index
+          //            Component.onCompleted: console.log("crated:", "page" + index + ".qml")
+          //            Component.onDestruction: console.log("destructed:", "page" + index + ".qml")
+          //          }
         }
       }
     }

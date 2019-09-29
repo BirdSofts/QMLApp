@@ -3,7 +3,7 @@
 #/ 
 #/ </summary>
 #/ <created>ʆϒʅ,18.09.2019</created>
-#/ <changed>ʆϒʅ,28.09.2019</changed>
+#/ <changed>ʆϒʅ,29.09.2019</changed>
 # *******************************************************************************************
 
 
@@ -33,7 +33,13 @@ if(NOT CMAKE_MODULE_PATH)
   endif(MSVC)
 endif()
 
-find_package(Qt5 COMPONENTS Core Quick Qml QuickControls2 REQUIRED)
+find_package(Qt5 COMPONENTS
+  Core
+  Gui
+  Qml
+  Quick
+  QuickControls2
+  REQUIRED)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -75,13 +81,14 @@ else(WIN32)
   add_executable(${TARGET_NAME} ${SOURCE_FILES} ${RESOURCES})
 endif(ANDROID)
 
-target_compile_definitions(${TARGET_NAME}
-  PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
+#target_compile_definitions(${TARGET_NAME}
+#  PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(${TARGET_NAME}
-  PRIVATE Qt5::Core
-  PRIVATE Qt5::Quick
-  PRIVATE Qt5::Qml
-  PRIVATE Qt5::QuickControls2
+  PUBLIC Qt5::Core
+  PUBLIC Qt5::Gui
+  PUBLIC Qt5::Qml
+  PUBLIC Qt5::Quick
+  PUBLIC Qt5::QuickControls2
   )
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
@@ -106,7 +113,10 @@ if(MSVC)
     COMMAND cmake -E copy_if_different
     ${QT_BINARIES}/Qt5Core.dll
     ${QT_BINARIES}/Qt5Cored.dll
+    ${QT_BINARIES}/Qt5Gui.dll
     ${QT_BINARIES}/Qt5Guid.dll
+    ${QT_BINARIES}/Qt5Network.dll
+    ${QT_BINARIES}/Qt5Networkd.dll
     ${QT_BINARIES}/Qt5Qml.dll
     ${QT_BINARIES}/Qt5Qmld.dll
     ${QT_BINARIES}/Qt5Quick.dll
@@ -115,14 +125,16 @@ if(MSVC)
     ${QT_BINARIES}/Qt5QuickControls2d.dll
     ${QT_BINARIES}/Qt5QuickTemplates2.dll
     ${QT_BINARIES}/Qt5QuickTemplates2d.dll
-    ${QT_BINARIES}/Qt5Network.dll
-    ${QT_BINARIES}/Qt5Networkd.dll
+    ${QT_BINARIES}/Qt5QuickWidgets.dll
+    ${QT_BINARIES}/Qt5QuickWidgetsd.dll
+    ${QT_BINARIES}/Qt5Widgets.dll
+    ${QT_BINARIES}/Qt5Widgetsd.dll
     $<TARGET_FILE_DIR:${TARGET_NAME}>
     )
 endif(MSVC)
 
 if(RELEASE_FLAG)
-  if(GNUCXX)
+  if(MINGW)
     add_custom_command(TARGET ${TARGET_NAME} PRE_BUILD
       COMMAND cmake -E copy_if_different
       ${QT_BINARIES}/libgcc_s_seh-1.dll
@@ -130,7 +142,10 @@ if(RELEASE_FLAG)
       ${QT_BINARIES}/libwinpthread-1.dll
       ${QT_BINARIES}/Qt5Core.dll
       ${QT_BINARIES}/Qt5Cored.dll
+      ${QT_BINARIES}/Qt5Gui.dll
       ${QT_BINARIES}/Qt5Guid.dll
+      ${QT_BINARIES}/Qt5Network.dll
+      ${QT_BINARIES}/Qt5Networkd.dll
       ${QT_BINARIES}/Qt5Qml.dll
       ${QT_BINARIES}/Qt5Qmld.dll
       ${QT_BINARIES}/Qt5Quick.dll
@@ -139,9 +154,15 @@ if(RELEASE_FLAG)
       ${QT_BINARIES}/Qt5QuickControls2d.dll
       ${QT_BINARIES}/Qt5QuickTemplates2.dll
       ${QT_BINARIES}/Qt5QuickTemplates2d.dll
-      ${QT_BINARIES}/Qt5Network.dll
-      ${QT_BINARIES}/Qt5Networkd.dll
+      ${QT_BINARIES}/Qt5QuickWidgets.dll
+      ${QT_BINARIES}/Qt5QuickWidgetsd.dll
+      ${QT_BINARIES}/Qt5Widgets.dll
+      ${QT_BINARIES}/Qt5Widgetsd.dll
       $<TARGET_FILE_DIR:${TARGET_NAME}>
       )
-  endif(GNUCXX)
+  endif(MINGW)
 endif(RELEASE_FLAG)
+
+#if(GNUCXX)
+#
+#endif(GNUCXX)

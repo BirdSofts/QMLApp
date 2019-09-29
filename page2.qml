@@ -3,7 +3,7 @@
 ///
 /// </summary>
 /// <created>ʆϒʅ,24.09.2019</created>
-/// <changed>ʆϒʅ,28.09.2019</changed>
+/// <changed>ʆϒʅ,30.09.2019</changed>
 // *******************************************************************************************
 
 
@@ -31,7 +31,7 @@ Item {
       id: smilyText
       text: qsTr( "Dragable animated Smily" )
       color: "darkBlue"
-      y: parent. top + 10
+      y: parent.y + 10
       anchors.horizontalCenter: parent.horizontalCenter
       font.pointSize: 12; font.bold: true
 

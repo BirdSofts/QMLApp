@@ -3,7 +3,7 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,24.09.2019</created>
-/// <changed>ʆϒʅ,28.09.2019</changed>
+/// <changed>ʆϒʅ,30.09.2019</changed>
 // *******************************************************************************************
 
 
@@ -69,7 +69,7 @@ Item {
       Text {
         id: testText
         text: "Test"
-        y: parent. top + 10
+        y: 10
         anchors.horizontalCenter: test.horizontalCenter
         font.pointSize: 20; font.bold: true
       }
