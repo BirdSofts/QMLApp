@@ -3,7 +3,7 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,18.09.2019</created>
-/// <changed>ʆϒʅ,20.09.2019</changed>
+/// <changed>ʆϒʅ,30.09.2019</changed>
 // *******************************************************************************************
 
 
@@ -12,6 +12,10 @@
 #include <qdir.h>
 #include <qquickview.h>
 #include <qqmlfileselector.h> // application without a window
+#include <qqmlcontext.h>
+
+#include "settings.h"
+
 
 int main ( int argc, char* argv [] )
 {
@@ -44,6 +48,10 @@ int main ( int argc, char* argv [] )
 
   view.connect ( view.engine (), &QQmlEngine::quit, &app, &QCoreApplication::quit );
   new QQmlFileSelector ( view.engine (), &view );
+
+  Configuration configs;
+  view.rootContext ()->setContextProperty ( "configuration", &configs );
+
   //view.setSource ( QUrl ( "qrc:///" #NAME ".qml" ) );
   view.setSource ( url );
 

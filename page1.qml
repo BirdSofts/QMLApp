@@ -3,7 +3,7 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,24.09.2019</created>
-/// <changed>ʆϒʅ,30.09.2019</changed>
+/// <changed>ʆϒʅ,01.10.2019</changed>
 // *******************************************************************************************
 
 
@@ -61,7 +61,7 @@ Item {
               snapMode: Slider.SnapAlways
               stepSize: 1
               to: 30
-              value: 12
+              value: configuration.getFontSize()
               onMoved: { fontSize.text = qsTr("Font size: " + value) }
               Layout.fillWidth: true
               Layout.minimumWidth: 150
@@ -78,7 +78,7 @@ Item {
             id: fontType
             background: Rectangle {}
             Layout.fillWidth: true
-            text: qsTr("Font: ")
+            text: qsTr("Font: " + configuration.getFontName())
             font.pixelSize: 14
             contentItem: Text { // adjustments to button text
               text: parent.text
@@ -137,7 +137,7 @@ Item {
             id: path
             background: Rectangle {}
             Layout.fillWidth: true
-            text: qsTr("Path: ")
+            text: qsTr("Path: " + configuration.getFilePath())
             font.pixelSize: 14
             contentItem: Text { // adjustments to button text
               text: parent.text
@@ -173,7 +173,7 @@ Item {
           // font size label
           Label {
             id: colourLable
-            text: qsTr("Current Colour: ")
+            text: qsTr("Current Colour: " + configuration.getColour())
             font.pixelSize: 14
             padding: 10
             Layout.fillWidth: true

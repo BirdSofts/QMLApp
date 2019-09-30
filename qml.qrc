@@ -8,5 +8,6 @@
         <file>page2.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>ColourModel.qml</file>
+        <file>settings.xml</file>
     </qresource>
 </RCC>

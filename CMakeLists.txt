@@ -3,7 +3,7 @@
 #/ 
 #/ </summary>
 #/ <created>ʆϒʅ,18.09.2019</created>
-#/ <changed>ʆϒʅ,29.09.2019</changed>
+#/ <changed>ʆϒʅ,30.09.2019</changed>
 # *******************************************************************************************
 
 
@@ -102,11 +102,11 @@ target_link_libraries(${TARGET_NAME}
 #    endif()
 #endif()
 
-#add_custom_command(TARGET ${TARGET_NAME} PRE_BUILD
-#          COMMAND cmake -E copy_if_different
-#          ${CMAKE_CURRENT_SOURCE_DIR}/theme.css
-#          $<TARGET_FILE_DIR:${TARGET_NAME}>
-#          )
+add_custom_command(TARGET ${TARGET_NAME} PRE_BUILD
+          COMMAND cmake -E copy_if_different
+          ${CMAKE_CURRENT_SOURCE_DIR}/settings.xml
+          $<TARGET_FILE_DIR:${TARGET_NAME}>
+          )
 
 if(MSVC)
   add_custom_command(TARGET ${TARGET_NAME} PRE_BUILD
