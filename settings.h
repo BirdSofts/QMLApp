@@ -3,7 +3,7 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,25.09.2019</created>
-/// <changed>ʆϒʅ,30.09.2019</changed>
+/// <changed>ʆϒʅ,01.10.2019</changed>
 // *******************************************************************************************
 
 
@@ -36,9 +36,10 @@ private:
   std::string path; // path to application XML settings file
 
   bool loaded; // true if loading was successful
-  bool load ( void ); // theme files loader
+  bool saved; // true if write procedure succeeded
+  bool load ( void ); // settings file loader
 public:
-  Settings current; // current theme
+  Settings current; // current settings
 
   Configuration ();
   //~AppStyle ( void );

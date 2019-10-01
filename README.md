@@ -4,7 +4,7 @@
 
 The project is just learning materials, which tries very hard to bring learning instruction, the source code itself and the compilation results all together in coding environment in easy language which results in experiencing more joy while learning QML.
 
-<img href="https://github.com/BirdSofts" src="https://github.com/BirdSofts/LearningQML/blob/master/screenshots/screenshot_01.jpg" width="800" height="600" alt="ScreenShot">
+<img href="https://github.com/BirdSofts" src="https://github.com/BirdSofts/LearningQML/blob/master/screenshots/screenshot_02.jpg" width="800" height="600" alt="ScreenShot">
 
 <table>
 <tr>

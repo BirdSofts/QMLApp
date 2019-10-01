@@ -11,7 +11,7 @@
 
 
 Configuration::Configuration () :
-  loaded ( false )
+  loaded ( false ), saved ( false )
 {
 
   current.fontSize = 0;
@@ -141,7 +141,37 @@ void Configuration::setDefaults ( void )
 void Configuration::set ( int fontSize, QString fontName, QString filePath, QString colour )
 {
 
-  //Todo save new settings into the file
+  try
+  {
+
+    current.fontSize = fontSize;
+    current.fontName = fontName;
+    current.filePath = filePath;
+    current.colour = colour;
+
+    std::ofstream writeStream ( path );
+    if (writeStream.good ())
+    {
+      std::stringstream settingsLine;
+      settingsLine << "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n\n" <<
+        "<settings>\n" <<
+        "\t<font_size> " << current.fontSize << " </font_size>\n" <<
+        "\t<font_name> " << current.fontName.toStdString () << " </font_name>\n" <<
+        "\t<file_path> " << current.filePath.toStdString () << " </file_path>\n" <<
+        "\t<colour> " << current.colour.toStdString () << " </colour>\n" <<
+        "</settings>\n";
+      writeStream << settingsLine.str ();
+      writeStream.close ();
+
+      saved = true;
+    } else
+      saved = false;
+
+  }
+  catch (const std::exception & ex)
+  {
+    saved = false;
+  }
 
 };
 

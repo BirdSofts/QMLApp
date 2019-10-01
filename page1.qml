@@ -18,6 +18,11 @@ Item {
   width: parent.width
   height: parent.height
 
+  property int pFontSize: 12
+  property string pFontName: "Arial"
+  property string pFilePath: "file:///C:/Users/Mehrdad/Desktop/desktop.ini"
+  property string pColour: "Blue"
+
   // page base container
   Item {
     id: pageTwo
@@ -31,6 +36,8 @@ Item {
       id: scrollView
       anchors.fill: parent
       padding: 10
+
+      onActiveFocusChanged: configuration.set (pFontSize, pFontName, pFilePath, pColour)
 
       // page's list view feed (page objects container)
       ObjectModel {
@@ -47,8 +54,8 @@ Item {
             anchors.fill: parent
             // font size label
             Label {
-              id: fontSize
-              text: qsTr("Font size: 12")
+              id: fontSizeLabel
+              text: qsTr("Font size: " + sliderFont.value)
               font.pixelSize: 14
               padding: 10
               Layout.fillWidth: true
@@ -62,7 +69,10 @@ Item {
               stepSize: 1
               to: 30
               value: configuration.getFontSize()
-              onMoved: { fontSize.text = qsTr("Font size: " + value) }
+              onMoved: {
+                fontSizeLabel.text = qsTr("Font size: " + value)
+                pFontSize = value
+              }
               Layout.fillWidth: true
               Layout.minimumWidth: 150
             }
@@ -99,14 +109,26 @@ Item {
               width: parent.width - 60
               height: parent.height - 60
               margins: 30
-              topPadding: 40
+              //              topPadding: 40
               bottomPadding: 40
               dim: true
               parent: Overlay.overlay
+
+              BusyIndicator {
+                id: indicator
+                anchors.right: parent.right
+                anchors.rightMargin: 2
+                anchors.top: parent.top
+                anchors.topMargin: 2
+                scale: 2
+                running: false
+              }
+
               // font name popup list view
               ListView {
                 id: fontList
                 model: Qt.fontFamilies()
+                y: 60
                 width: parent.width
                 height: parent.height
                 delegate: ItemDelegate {
@@ -116,6 +138,7 @@ Item {
                   highlighted: ListView.isCurrentItem
                   onClicked: {
                     fontType.text = qsTr("Font: " + modelData)
+                    pFontName = modelData
                     //                  highlighted = ListView.isCurrentItem
                     //                    console.log("clicked:", modelData)
                     fontPopup.close()
@@ -124,6 +147,9 @@ Item {
                 // popup scroll functionallity
                 ScrollIndicator.vertical: ScrollIndicator {}
               }
+              onOpened: indicator.running = true
+              onClosed: indicator.running = false
+
             }
           }
         }
@@ -158,7 +184,8 @@ Item {
               title: "Please choose a file"
               folder: shortcuts.desktop
               onAccepted: {
-                path.text = qsTr("Path: " + pathDialog.fileUrls)
+                path.text = qsTr("Path: " + pathDialog.fileUrl)
+                pFilePath = pathDialog.fileUrl
                 //                Qt.quit() // exit the application
               }
             }
@@ -232,7 +259,10 @@ Item {
                   controlY: 50
                 }
               }
-              onCurrentIndexChanged: colourLable.text = qsTr("Current Colour: " + currentItem.children[1].text)
+              onCurrentIndexChanged: {
+                colourLable.text = qsTr("Current Colour: " + currentItem.children[1].text)
+                pColour = currentItem.children[1].text
+              }
             }
           }
         }
