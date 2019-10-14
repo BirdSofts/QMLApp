@@ -3,13 +3,13 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,18.09.2019</created>
-/// <changed>ʆϒʅ,30.09.2019</changed>
+/// <changed>ʆϒʅ,14.10.2019</changed>
 // *******************************************************************************************
-
 
 import QtQuick 2.13
 //import QtQuick.Window 2.13 // QML window component
 import QtQuick.Controls 2.13
+
 
 // QML window component
 //Window {

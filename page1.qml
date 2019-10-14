@@ -3,15 +3,15 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,24.09.2019</created>
-/// <changed>ʆϒʅ,01.10.2019</changed>
+/// <changed>ʆϒʅ,14.10.2019</changed>
 // *******************************************************************************************
-
 
 import QtQuick 2.13
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.6
 import QtQml.Models 2.3
 import QtQuick.Dialogs 1.3
+
 
 // second swipe view (base container)
 Item {

@@ -3,11 +3,11 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,22.09.2019</created>
-/// <changed>ʆϒʅ,25.09.2019</changed>
+/// <changed>ʆϒʅ,14.10.2019</changed>
 // *******************************************************************************************
 
-
 import QtQuick 2.13
+
 
 // palette container entity
 Item {

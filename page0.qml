@@ -3,13 +3,13 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,24.09.2019</created>
-/// <changed>ʆϒʅ,30.09.2019</changed>
+/// <changed>ʆϒʅ,14.10.2019</changed>
 // *******************************************************************************************
-
 
 import QtQuick 2.9
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.5
+
 
 // first swipe view (base container)
 Item {

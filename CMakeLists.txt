@@ -1,11 +1,10 @@
 ﻿# *******************************************************************************************
 #/ <summary>
-#/ 
+#/
 #/ </summary>
 #/ <created>ʆϒʅ,18.09.2019</created>
-#/ <changed>ʆϒʅ,30.09.2019</changed>
+#/ <changed>ʆϒʅ,14.10.2019</changed>
 # *******************************************************************************************
-
 
 cmake_minimum_required(VERSION 3.5)
 
@@ -24,15 +23,6 @@ project(${PROJECT_NAME}
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-if(NOT CMAKE_MODULE_PATH)
-  if(MSVC)
-    set(QT_BINARIES "C:/Qt/5.13.1/msvc2017_64/bin")
-    set(Qt5_DIR "C:/Qt/5.13.1/msvc2017_64/lib/cmake/Qt5")
-  else(MSVC)
-    set(QT_BINARIES "C:/Qt/5.13.1/mingw73_64/bin")
-  endif(MSVC)
-endif()
-
 find_package(Qt5 COMPONENTS
   Core
   Gui
@@ -50,9 +40,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 #if(MSVC)
 #  list(APPEND RESOURCES
-#          ${TARGET_NAME}.rc
-#          resource.h
-#  )
+#    ${TARGET_NAME}.rc
+#    resource.h
+#    )
 #endif(MSVC)
 
 list(APPEND HEADER_FILES
@@ -82,7 +72,7 @@ else(WIN32)
 endif(ANDROID)
 
 #target_compile_definitions(${TARGET_NAME}
-#  PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
+#PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(${TARGET_NAME}
   PUBLIC Qt5::Core
   PUBLIC Qt5::Gui
@@ -96,42 +86,17 @@ target_link_libraries(${TARGET_NAME}
 # These variables must use CACHE, otherwise QtCreator won't see them.
 
 #if(ANDROID)
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android" CACHE INTERNAL "")
-#    if (ANDROID_ABI STREQUAL "armeabi-v7a")
-#        set(ANDROID_EXTRA_LIBS ${CMAKE_CURRENT_SOURCE_DIR}/path/to/libcrypto.so ${CMAKE_CURRENT_SOURCE_DIR}/path/to/libssl.so CACHE INTERNAL "")
-#    endif()
+#  set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android" CACHE INTERNAL "")
+#  if (ANDROID_ABI STREQUAL "armeabi-v7a")
+#    set(ANDROID_EXTRA_LIBS ${CMAKE_CURRENT_SOURCE_DIR}/path/to/libcrypto.so ${CMAKE_CURRENT_SOURCE_DIR}/path/to/libssl.so CACHE INTERNAL "")
+#  endif()
 #endif()
 
 add_custom_command(TARGET ${TARGET_NAME} PRE_BUILD
-          COMMAND cmake -E copy_if_different
-          ${CMAKE_CURRENT_SOURCE_DIR}/settings.xml
-          $<TARGET_FILE_DIR:${TARGET_NAME}>
-          )
-
-if(MSVC)
-  add_custom_command(TARGET ${TARGET_NAME} PRE_BUILD
-    COMMAND cmake -E copy_if_different
-    ${QT_BINARIES}/Qt5Core.dll
-    ${QT_BINARIES}/Qt5Cored.dll
-    ${QT_BINARIES}/Qt5Gui.dll
-    ${QT_BINARIES}/Qt5Guid.dll
-    ${QT_BINARIES}/Qt5Network.dll
-    ${QT_BINARIES}/Qt5Networkd.dll
-    ${QT_BINARIES}/Qt5Qml.dll
-    ${QT_BINARIES}/Qt5Qmld.dll
-    ${QT_BINARIES}/Qt5Quick.dll
-    ${QT_BINARIES}/Qt5Quickd.dll
-    ${QT_BINARIES}/Qt5QuickControls2.dll
-    ${QT_BINARIES}/Qt5QuickControls2d.dll
-    ${QT_BINARIES}/Qt5QuickTemplates2.dll
-    ${QT_BINARIES}/Qt5QuickTemplates2d.dll
-    ${QT_BINARIES}/Qt5QuickWidgets.dll
-    ${QT_BINARIES}/Qt5QuickWidgetsd.dll
-    ${QT_BINARIES}/Qt5Widgets.dll
-    ${QT_BINARIES}/Qt5Widgetsd.dll
-    $<TARGET_FILE_DIR:${TARGET_NAME}>
-    )
-endif(MSVC)
+  COMMAND cmake -E copy_if_different
+  ${CMAKE_CURRENT_SOURCE_DIR}/settings.xml
+  $<TARGET_FILE_DIR:${TARGET_NAME}>
+  )
 
 if(RELEASE_FLAG)
   if(MINGW)

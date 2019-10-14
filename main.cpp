@@ -3,9 +3,8 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,18.09.2019</created>
-/// <changed>ʆϒʅ,30.09.2019</changed>
+/// <changed>ʆϒʅ,14.10.2019</changed>
 // *******************************************************************************************
-
 
 #include <qguiapplication.h>
 //#include <qqmlapplicationengine.h> // not using a window
