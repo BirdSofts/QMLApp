@@ -3,7 +3,7 @@
 ///
 /// </summary>
 /// <created>ʆϒʅ,24.09.2019</created>
-/// <changed>ʆϒʅ,14.10.2019</changed>
+/// <changed>ʆϒʅ,28.04.2022</changed>
 // *******************************************************************************************
 
 import QtQuick 2.13
@@ -29,7 +29,7 @@ Item {
 
     Text {
       id: smilyText
-      text: qsTr( "Dragable animated Smily" )
+      text: qsTr( "Dragable animated Smily\nwith Entity as name" )
       color: "darkBlue"
       y: parent.y + 10
       anchors.horizontalCenter: parent.horizontalCenter
@@ -43,6 +43,7 @@ Item {
         duration: 1000
         onFinished: textShrinkAnimation.start()
       }
+
       PropertyAnimation on font.letterSpacing {
         id: textShrinkAnimation
         from: 3

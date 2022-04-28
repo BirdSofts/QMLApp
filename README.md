@@ -4,35 +4,12 @@
 
 The project is just learning materials, which tries very hard to bring learning instruction, the source code itself and the compilation results all together in coding environment in easy language which results in experiencing more joy while learning QML.
 
-<img href="https://github.com/BirdSofts" src="https://github.com/BirdSofts/LearningQML/blob/master/screenshots/screenshot_02.jpg" width="800" height="600" alt="ScreenShot">
+<img href="https://github.com/s.mehrdad" src="https://github.com/S-mehrdad/LearningQML/blob/master/screenshots/screenshot_02.jpg" width="800" height="600" alt="ScreenShot">
 
-<table>
-<tr>
-<td><b>Creator's Website:</b></td>
-<td><a href="https://birdpoems.jimdofree.com/">BirdPoems</a></td>
-</tr>
-</table>
-
-<table>
-<tr>
-<td><b>Creator's private repository:</b></td>
-<td><a href="https://dev.azure.com/BirdSofts/">BirdSofts</a></td>
-<td><b>Creator's public repository:</b></td>
-<td><a href="https://github.com/BirdSofts">BirdSofts</a></td>
-</tr>
-</table>
-
-<table>
-<tr>
-<td><b>Creator's Emails:</b></td>
-<td><a href="mailto:s.mehrdad.47@gamil.com">s.mehrdad.47@gamil.com</a></td>
-<td><a href="mailto:s.mehrdad.47@outlook.com">s.mehrdad.47@outlook.com</a></td>
-</tr>
-</table>
 
 # Getting Started
 1.	Installation process:
-Compilable! :)
+Can be compiled.
 It is possible to use both Visual Studio and Qt Creator IDEs, but make sure configuring them correctly.
 
 2.	Software dependencies:
@@ -43,7 +20,7 @@ It is possible to use both Visual Studio and Qt Creator IDEs, but make sure conf
 </table>
 
 3.	Latest releases:
-Still no release, just coding and debugging
+Source code is released. 
 
 4.	API references:
 Qt
@@ -51,10 +28,14 @@ Qt
 # Build and Test
 If you are a beginner, Qt Creator is your choice, if not you probably know what you are doing.
 
-Compilable using CMake.
-```cmake
-cmake --build build-path
-```
+Compile using CMake.
+
+<table>
+<tr>
+<td><b>Cmake:</b></td>
+<td>cmake --build build-path</td>
+</tr>
+</table>
 
 # Contribute
 I appreciate any contribution from anyone, who sees that the project deserves his precious time.
@@ -82,4 +63,4 @@ I appreciate any contribution from anyone, who sees that the project deserves hi
 </table>
 
 # Copyright
-The literature and all the known and unknown ideas provided within the following learning resource is copyrighted. On the other hand, so far the source code is concerned, most of which is learned and inspired from online references and the addition to them can be used under the licence terms provided with the software itself.
+The literature and all the known and unknown ideas provided within the following learning resource is copyrighted. On the other hand, so far the source code is concerned, most of which is learned and inspired from online references and the addition to them can be used under the license terms provided with the software itself and the open source software license provided by Qt company.

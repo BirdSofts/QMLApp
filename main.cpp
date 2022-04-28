@@ -3,7 +3,7 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,18.09.2019</created>
-/// <changed>ʆϒʅ,14.10.2019</changed>
+/// <changed>ʆϒʅ,28.04.2022</changed>
 // *******************************************************************************************
 
 #include <qguiapplication.h>
@@ -18,7 +18,7 @@
 
 int main ( int argc, char* argv [] )
 {
-  QCoreApplication::setAttribute ( Qt::AA_EnableHighDpiScaling );
+  //  QCoreApplication::setAttribute ( Qt::AA_EnableHighDpiScaling ); // Deprecated
 
   QGuiApplication app ( argc, argv );
 
