@@ -23,7 +23,7 @@ int main ( int argc, char* argv [] )
   QGuiApplication app ( argc, argv );
 
   app.setOrganizationName ( "BirdSofts" );
-  app.setOrganizationDomain ( "https://github.com/BirdSofts/" );
+  app.setOrganizationDomain ( "https://github.com/s-mehrdad/" );
   app.setApplicationName ( QFileInfo ( app.applicationFilePath () ).baseName () );
 
   QQuickView view;

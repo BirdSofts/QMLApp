@@ -3,7 +3,7 @@
 #/
 #/ </summary>
 #/ <created>ʆϒʅ,18.09.2019</created>
-#/ <changed>ʆϒʅ,28.04.2022</changed>
+#/ <changed>ʆϒʅ,11.05.2022</changed>
 # *******************************************************************************************
 
 cmake_minimum_required(VERSION 3.5)
@@ -17,7 +17,7 @@ set(PROJECT_NAME ${TARGET_NAME})
 project(${PROJECT_NAME}
   VERSION 0.1.0.0
   DESCRIPTION "QML notes and examples"
-  HOMEPAGE_URL "https://github.com/BirdSofts/QMLApp"
+  HOMEPAGE_URL "https://github.com/s-mehrdad/QMLApp"
   LANGUAGES CXX
   )
 
