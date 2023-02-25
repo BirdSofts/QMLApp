@@ -1,9 +1,12 @@
-﻿// *******************************************************************************************
+﻿
+// *******************************************************************************************
 /// <summary>
-/// 
+/// main.qml
+/// QMLApp
+/// created by Mehrdad Solimanimajd on 18.09.2019
 /// </summary>
-/// <created>ʆϒʅ,18.09.2019</created>
-/// <changed>ʆϒʅ,14.10.2019</changed>
+/// <created>ʆϒʅ, 18.09.2019</created>
+/// <changed>ʆϒʅ, 21.02.2023</changed>
 // *******************************************************************************************
 
 import QtQuick 2.13
@@ -34,6 +37,8 @@ Item {
 
     SwipeView {
       id: view
+      width: parent.width
+      height: parent.height
       currentIndex: 0
       anchors.fill: parent
 

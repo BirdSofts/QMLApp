@@ -1,9 +1,12 @@
-﻿// *******************************************************************************************
+﻿
+// *******************************************************************************************
 /// <summary>
-/// 
+/// settings.cpp
+/// QMLApp
+/// created by Mehrdad Solimanimajd on 25.09.2019
 /// </summary>
-/// <created>ʆϒʅ,25.09.2019</created>
-/// <changed>ʆϒʅ,14.10.2019</changed>
+/// <created>ʆϒʅ, 25.09.2019</created>
+/// <changed>ʆϒʅ, 21.02.2023</changed>
 // *******************************************************************************************
 
 #include "settings.h"
@@ -37,87 +40,104 @@ bool Configuration::load ( void )
 
     std::ifstream file ( path );
     if (file.is_open ())
-    {
-      std::string input { "" };
-      std::string strSphere { "" };
-      std::string strOut { "" };
-      short sphere { 0 };
-      std::stringstream stream;
-
-      do
       {
-        std::getline ( file, input );
-      } while (input != "<settings>");
-
-      if (input == "<settings>")
-      {
-        std::getline ( file, input );
-        stream << input << std::endl;
+        std::string input { "" };
+        std::string strSphere { "" };
+        std::string strOut { "" };
+        short sphere { 0 };
+        std::stringstream stream;
 
         do
-        {
-
-          stream >> strSphere;
-
-          if (strSphere == "<font_size>")
-            sphere = enumFontSize;
-          else
-            if (strSphere == "<font_name>")
-              sphere = enumFontName;
-            else
-              if (strSphere == "<file_path>")
-                sphere = enumFilePath;
-              else
-                if (strSphere == "<colour>")
-                  sphere = enumColour;
-                else
-                {
-                  stream.str ( "" );
-                  stream.clear ();
-                  sphere = -1;
-                  std::getline ( file, input );
-                  stream << input << std::endl;
-                }
-
-          strSphere = "";
-
-          switch (sphere)
           {
-            case enumFontSize:
-              stream >> current.fontSize;
-              break;
+            std::getline ( file, input );
+          } while (input != "<settings>");
 
-            case enumFontName:
-              stream >> strOut;
-              current.fontName = strOut.c_str ();
-              break;
+        if (input == "<settings>")
+          {
+            std::getline ( file, input );
+            stream << input << std::endl;
 
-            case enumFilePath:
-              stream >> strOut;
-              current.filePath = strOut.c_str ();
-              break;
+            do
+              {
 
-            case enumColour:
-              stream >> strOut;
-              current.colour = strOut.c_str ();
-              break;
+                stream >> strSphere;
+
+                if (strSphere == "<font_size>")
+                  sphere = enumFontSize;
+                else
+                  if (strSphere == "<font_name>")
+                    sphere = enumFontName;
+                  else
+                    if (strSphere == "<file_path>")
+                      sphere = enumFilePath;
+                    else
+                      if (strSphere == "<colour>")
+                        sphere = enumColour;
+                      else
+                        {
+                          stream.str ( "" );
+                          stream.clear ();
+                          sphere = -1;
+                          std::getline ( file, input );
+                          stream << input << std::endl;
+                        }
+
+                strSphere = "";
+
+                switch (sphere)
+                  {
+                  case enumFontSize:
+                    stream >> current.fontSize;
+                    break;
+
+                  case enumFontName:
+                    do {
+                        //                        if (strOut!="") {
+                        //                            current.fontName += " ";
+                        //                          }
+                        //                        stream >> strOut;
+                        //                        current.fontName += strOut.c_str ();
+                        if (strOut=="") {
+                            stream >> strOut;
+                          } else
+                          {
+                            current.fontName += strOut.c_str();
+                            strOut = "";
+                            stream >> strOut;
+                            if (strOut!="</font_name>") {
+                                current.fontName += " ";
+                              }
+                          }
+
+                      } while (strOut!="</font_name>");
+                    break;
+
+                  case enumFilePath:
+                    stream >> strOut;
+                    current.filePath = strOut.c_str ();
+                    break;
+
+                  case enumColour:
+                    stream >> strOut;
+                    current.colour = strOut.c_str ();
+                    break;
+                  }
+
+              } while (input != "</settings>");
+          } else
+          {
+            file.close ();
+            setDefaults ();
+            return false;
           }
 
-        } while (input != "</settings>");
+        file.close ();
+        return true;
       } else
       {
-        file.close ();
         setDefaults ();
         return false;
       }
-
-      file.close ();
-      return true;
-    } else
-    {
-      setDefaults ();
-      return false;
-    }
 
   }
   catch (const std::exception & ex)
@@ -130,7 +150,7 @@ bool Configuration::load ( void )
 
 void Configuration::setDefaults ( void )
 {
-  current.fontSize = 12;
+  current.fontSize = 13;
   current.fontName = "Arial";
   current.filePath = "desktop";
   current.colour = "blue";
@@ -150,20 +170,20 @@ void Configuration::set ( int fontSize, QString fontName, QString filePath, QStr
 
     std::ofstream writeStream ( path );
     if (writeStream.good ())
-    {
-      std::stringstream settingsLine;
-      settingsLine << "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n\n" <<
-        "<settings>\n" <<
-        "\t<font_size> " << current.fontSize << " </font_size>\n" <<
-        "\t<font_name> " << current.fontName.toStdString () << " </font_name>\n" <<
-        "\t<file_path> " << current.filePath.toStdString () << " </file_path>\n" <<
-        "\t<colour> " << current.colour.toStdString () << " </colour>\n" <<
-        "</settings>\n";
-      writeStream << settingsLine.str ();
-      writeStream.close ();
+      {
+        std::stringstream settingsLine;
+        settingsLine << "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n\n" <<
+                        "<settings>\n" <<
+                        "\t<font_size> " << current.fontSize << " </font_size>\n" <<
+                        "\t<font_name> " << current.fontName.toStdString () << " </font_name>\n" <<
+                        "\t<file_path> " << current.filePath.toStdString () << " </file_path>\n" <<
+                        "\t<colour> " << current.colour.toStdString () << " </colour>\n" <<
+                        "</settings>\n";
+        writeStream << settingsLine.str ();
+        writeStream.close ();
 
-      saved = true;
-    } else
+        saved = true;
+      } else
       saved = false;
 
   }

@@ -1,9 +1,12 @@
-﻿# *******************************************************************************************
+﻿
+# *******************************************************************************************
 #/ <summary>
-#/
+#/ CMakeLists.txt
+#/ QMLApp
+#/ created by Mehrdad Solimanimajd on 18.09.2019
 #/ </summary>
-#/ <created>ʆϒʅ,18.09.2019</created>
-#/ <changed>ʆϒʅ,11.05.2022</changed>
+#/ <created>ʆϒʅ, 18.09.2019</created>
+#/ <changed>ʆϒʅ, 21.02.2023</changed>
 # *******************************************************************************************
 
 cmake_minimum_required(VERSION 3.5)
@@ -19,7 +22,7 @@ project(${PROJECT_NAME}
   DESCRIPTION "QML notes and examples"
   HOMEPAGE_URL "https://github.com/s-mehrdad/QMLApp"
   LANGUAGES CXX
-  )
+)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -47,16 +50,16 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 list(APPEND HEADER_FILES
   settings.h
-  )
+)
 
 list(APPEND SOURCE_FILES
   main.cpp
   settings.cpp
-  )
+)
 
 list(APPEND QRC_FILES
   qml.qrc
-  )
+)
 
 if(WIN32)
   list(APPEND SOURCE_FILES ${HEADER_FILES})
@@ -64,11 +67,26 @@ if(WIN32)
 endif(WIN32)
 
 if(ANDROID)
-  add_library(${TARGET_NAME} SHARED ${SOURCE_FILES} ${RESOURCES})
+  add_library(${TARGET_NAME} SHARED
+    ${SOURCE_FILES}
+    ${HEADER_FILES}
+    ${QRC_FILES}
+    ${RESOURCES}
+  )
+
 elseif(WIN32)
-  add_executable(${TARGET_NAME} WIN32 ${SOURCE_FILES} ${RESOURCES})
+  add_executable(${TARGET_NAME} WIN32
+    ${SOURCE_FILES}
+    ${RESOURCES}
+  )
+
 else(WIN32)
-  add_executable(${TARGET_NAME} ${SOURCE_FILES} ${RESOURCES})
+  add_executable(${TARGET_NAME}
+    ${SOURCE_FILES}
+    ${HEADER_FILES}
+    ${QRC_FILES}
+    ${RESOURCES}
+  )
 endif(ANDROID)
 
 #target_compile_definitions(${TARGET_NAME}
@@ -79,7 +97,7 @@ target_link_libraries(${TARGET_NAME}
   PUBLIC Qt6::Qml
   PUBLIC Qt6::Quick
   PUBLIC Qt6::QuickControls2
-  )
+)
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
 # Check http://doc.qt.io/qt-5/deployment-android.html for more information.
@@ -92,15 +110,16 @@ target_link_libraries(${TARGET_NAME}
 #  endif()
 #endif()
 
-#add_custom_command(TARGET ${TARGET_NAME} PRE_BUILD
-#  COMMAND cmake -E copy_if_different
-#  ${CMAKE_CURRENT_SOURCE_DIR}/settings.xml
-#  ${CMAKE_CURRENT_BINARY_DIR}>
-#  )
+add_custom_command(TARGET ${TARGET_NAME} PRE_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy_if_different
+  ${CMAKE_CURRENT_SOURCE_DIR}/settings.xml
+  ${CMAKE_CURRENT_BINARY_DIR}
+  VERBATIM)
+message(${CMAKE_CURRENT_SOURCE_DIR}/settings.xml)
 
 install(FILES settings.xml
   DESTINATION ${CMAKE_CURRENT_BINARY_DIR}
-  )
+)
 
 if(RELEASE_FLAG)
   if(MINGW)
@@ -128,8 +147,8 @@ if(RELEASE_FLAG)
       ${QT_BINARIES}/Qt6Widgets.dll
       ${QT_BINARIES}/Qt6Widgetsd.dll
       $<TARGET_FILE_DIR:${TARGET_NAME}>
-      )
-  endif(MINGW)
+    )
+endif(MINGW)
 endif(RELEASE_FLAG)
 
 #if(GNUCXX)

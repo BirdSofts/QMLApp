@@ -1,16 +1,19 @@
-﻿// *******************************************************************************************
+﻿
+// *******************************************************************************************
 /// <summary>
-/// 
+/// page1.qml
+/// QMLApp
+/// created by Mehrdad Solimanimajd on 24.09.2019
 /// </summary>
-/// <created>ʆϒʅ,24.09.2019</created>
-/// <changed>ʆϒʅ,14.10.2019</changed>
+/// <created>ʆϒʅ, 24.09.2019</created>
+/// <changed>ʆϒʅ, 25.02.2023</changed>
 // *******************************************************************************************
 
 import QtQuick 2.13
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.6
 import QtQml.Models 2.3
-import QtQuick.Dialogs 1.3
+import QtQuick.Dialogs
 
 
 // second swipe view (base container)
@@ -72,6 +75,7 @@ Item {
               onMoved: {
                 fontSizeLabel.text = qsTr("Font size: " + value)
                 pFontSize = value
+                configuration.set (pFontSize, pFontName, pFilePath, pColour)
               }
               Layout.fillWidth: true
               Layout.minimumWidth: 150
@@ -134,7 +138,6 @@ Item {
                 delegate: ItemDelegate {
                   text: modelData
                   font.pixelSize: 14
-                  width: parent.width
                   highlighted: ListView.isCurrentItem
                   onClicked: {
                     fontType.text = qsTr("Font: " + modelData)
@@ -182,10 +185,10 @@ Item {
             FileDialog {
               id: pathDialog
               title: "Please choose a file"
-              folder: shortcuts.desktop
+//              folder: shortcuts.desktop
               onAccepted: {
-                path.text = qsTr("Path: " + pathDialog.fileUrl)
-                pFilePath = pathDialog.fileUrl
+                path.text = qsTr("Path: " + pathDialog.selectedFile)
+                pFilePath = pathDialog.selectedFile
                 //                Qt.quit() // exit the application
               }
             }
