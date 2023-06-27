@@ -3,10 +3,10 @@
 /// <summary>
 /// settings.h
 /// QMLApp
-/// created by Mehrdad Solimanimajd on 25.09.2019
+/// created by Mehrdad Soleimanimajd on 25.09.2019
 /// </summary>
 /// <created>ʆϒʅ, 25.09.2019</created>
-/// <changed>ʆϒʅ, 21.02.2023</changed>
+/// <changed>ʆϒʅ, 27.06.2023</changed>
 // *******************************************************************************************
 
 #ifndef SETTINGS_H
@@ -24,34 +24,34 @@
 enum Sphare { enumFontSize = 0, enumFontName, enumFilePath, enumColour };
 struct Settings
 {
-  int fontSize;
-  QString fontName;
-  QString filePath;
-  QString colour;
+    int fontSize;
+    QString fontName;
+    QString filePath;
+    QString colour;
 };
 
 
 class Configuration : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 private:
-  std::string path; // path to application XML settings file
+    std::string path; // path to application XML settings file
 
-  bool loaded; // true if loading was successful
-  bool saved; // true if write procedure succeeded
-  bool load ( void ); // settings file loader
+    bool loaded; // true if loading was successful
+    bool saved; // true if write procedure succeeded
+    bool load ( void ); // settings file loader
 public:
-  Settings current; // current settings
+    Settings current; // current settings
 
-  Configuration ();
-  //~AppStyle ( void );
-  Q_INVOKABLE void setDefaults ( void ); // defaults (if the settings file is corrupt)
-  Q_INVOKABLE void set ( int, QString, QString, QString ); // set QML properties to settings file
-  Q_INVOKABLE bool const getLoaded ( void ); // get loaded status
-  Q_INVOKABLE int const getFontSize ( void ); // get font size
-  Q_INVOKABLE QString const getFontName ( void ); // get font name
-  Q_INVOKABLE QString const getFilePath ( void ); // get file path
-  Q_INVOKABLE QString const getColour ( void ); // get colour
+    Configuration ();
+    //~AppStyle ( void );
+    Q_INVOKABLE void setDefaults ( void ); // defaults (if the settings file is corrupt)
+    Q_INVOKABLE void set ( int, QString, QString, QString ); // set QML properties to settings file
+    Q_INVOKABLE bool const getLoaded ( void ); // get loaded status
+    Q_INVOKABLE int const getFontSize ( void ); // get font size
+    Q_INVOKABLE QString const getFontName ( void ); // get font name
+    Q_INVOKABLE QString const getFilePath ( void ); // get file path
+    Q_INVOKABLE QString const getColour ( void ); // get colour
 };
 
 

@@ -1,89 +1,85 @@
-﻿
-// *******************************************************************************************
+﻿// *******************************************************************************************
 /// <summary>
 /// main.qml
 /// QMLApp
-/// created by Mehrdad Solimanimajd on 18.09.2019
+/// created by Mehrdad Soleimanimajd on 18.09.2019
 /// </summary>
 /// <created>ʆϒʅ, 18.09.2019</created>
-/// <changed>ʆϒʅ, 21.02.2023</changed>
+/// <changed>ʆϒʅ, 27.06.2023</changed>
 // *******************************************************************************************
-
 import QtQuick 2.13
 //import QtQuick.Window 2.13 // QML window component
 import QtQuick.Controls 2.13
-
 
 // QML window component
 //Window {
 //visible: true
 //title: qsTr("Hello World")
-
 Item {
-  id: main
-//  width: 320
-//  height: 480
-  width: 480
-  height: 640
+    id: main
+    //  width: 320
+    //  height: 480
+    width: 480
+    height: 640
 
-  Item {
-    width: parent.width
-    height: parent.height
-    anchors.fill: parent
-    anchors.rightMargin: 5
-    anchors.bottomMargin: 5
-    anchors.leftMargin: 5
-    anchors.topMargin: 5
+    Item {
+        width: parent.width
+        height: parent.height
+        anchors.fill: parent
+        anchors.rightMargin: 5
+        anchors.bottomMargin: 5
+        anchors.leftMargin: 5
+        anchors.topMargin: 5
 
-    SwipeView {
-      id: view
-      width: parent.width
-      height: parent.height
-      currentIndex: 0
-      anchors.fill: parent
+        SwipeView {
+            id: view
+            width: parent.width
+            height: parent.height
+            currentIndex: 0
+            anchors.fill: parent
 
-      //    pages to be loaded item by item
-      //    Item {
-      //      id: pageOne
-      //      Loader { source: "pageOne.qml" }
-      //      //property Component one: PageOne {}
-      //    }
-      //    Item {
-      //      id: pageTwo
-      //      Loader { source: "pageTwo.qml" }
-      //    }
-      //    Item {
-      //      id: pageThree
-      //      Loader { source: "pageThree.qml" }
-      //    }
+            //    pages to be loaded item by item
+            //    Item {
+            //      id: pageOne
+            //      Loader { source: "pageOne.qml" }
+            //      //property Component one: PageOne {}
+            //    }
+            //    Item {
+            //      id: pageTwo
+            //      Loader { source: "pageTwo.qml" }
+            //    }
+            //    Item {
+            //      id: pageThree
+            //      Loader { source: "pageThree.qml" }
+            //    }
 
-      // automatic pages' instantiatation and destruction
-      Repeater {
-        model: 3 // number of pages
+            // automatic pages' instantiatation and destruction
+            Repeater {
+                model: 3 // number of pages
 
-        Loader {
-          // loaded ones (note that using loader source property, destruction functionality is different)
-          //active: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
-          //active: SwipeView.isCurrentItem // just current is loaded
+                Loader {
 
-          source: "page" + index + ".qml"
+                    // loaded ones (note that using loader source property, destruction functionality is different)
+                    //active: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
+                    //active: SwipeView.isCurrentItem // just current is loaded
+                    source: "page" + index + ".qml"
 
-          //          sourceComponent: Text {
-          //            text: index
-          //            Component.onCompleted: console.log("crated:", "page" + index + ".qml")
-          //            Component.onDestruction: console.log("destructed:", "page" + index + ".qml")
-          //          }
+                    //          sourceComponent: Text {
+                    //            text: index
+                    //            Component.onCompleted: console.log("crated:", "page" + index + ".qml")
+                    //            Component.onDestruction: console.log("destructed:", "page" + index + ".qml")
+                    //          }
+                }
+            }
         }
-      }
-    }
 
-    // swip view need: a good practice, which gives the user some clues about where was what. :)
-    PageIndicator {
-      id: indicator
-      count: view.count
-      currentIndex: view.currentIndex
-      anchors.bottom: view.bottom
-      anchors.horizontalCenter: parent.horizontalCenter
+        // swip view need: a good practice, which gives the user some clues about where was what. :)
+        PageIndicator {
+            id: indicator
+            count: view.count
+            currentIndex: view.currentIndex
+            anchors.bottom: view.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
     }
-  }
 }
